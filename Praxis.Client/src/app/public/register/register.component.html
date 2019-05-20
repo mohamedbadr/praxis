@@ -1,0 +1,92 @@
+<div class="login">
+  <div class="logo">
+    <a href="index.html">
+      <img
+        src="../../../assets/images/logo-big.png"
+        alt>
+    </a>
+  </div>
+  <div class="content">
+    <!-- BEGIN LOGIN FORM -->
+    <form
+      class="login-form"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+      <h3 class="form-title font-green">Register</h3>
+      <div class="form-group">
+        <!-- ie8, ie9 does not support html5 placeholder, so we just show field title for that -->
+        <label class="control-label visible-ie8 visible-ie9">Email</label>
+        <input
+          type="email"
+          placeholder="Email"
+          class="form-control"
+          formControlName="email">
+      </div>
+      <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          class="form-control"
+          formControlName="password">
+      </div>
+      <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Name</label>
+        <input
+          type="text"
+          placeholder="Name"
+          class="form-control"
+          formControlName="fullName">
+      </div>
+      <div class="form-group">
+        <div class="col-md-9">
+          <div class="mt-radio-inline">
+            <label class="mt-radio">
+              <input
+                type="radio"
+                name="userType"
+                value="1"
+                (change)="onUserTypeChange(1)"
+                [checked]="true">
+              Company
+              <span></span>
+            </label>
+            <label
+              class="mt-radio"
+              style="padding-left: 10px">
+              <input
+                type="radio"
+                name="userType"
+                value="2"
+                (change)="onUserTypeChange(2)">
+              Customer
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button
+          type="submit"
+          [disabled]="!form.valid"
+          class="btn green uppercase">
+          Create Account
+        </button>
+      </div>
+      <div class="create-account">
+        <p>
+          <a
+            [routerLink]="['/account/login']"
+            href="javascript:;"
+            id="register-btn"
+            class="uppercase">
+            Back to Login
+          </a>
+        </p>
+      </div>
+
+    </form>
+    <!-- END LOGIN FORM -->
+
+  </div>
+</div>

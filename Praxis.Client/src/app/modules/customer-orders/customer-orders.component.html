@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption">
+          <div class="caption font-green-sharp">
+            <span class="caption-subject bold uppercase"> Orders</span>
+          </div>
+        </div>
+      </div>
+      <div class="portlet-body form">
+
+        <div
+          class="alert alert-warning"
+          *ngIf="!orders || orders.length == 0">
+          <i class="fa fa-warning"></i>
+          No orders have been placed yet.
+        </div>
+
+        <p-table
+          *ngIf="orders && orders.length > 0"
+          #dt
+          [value]="orders"
+          [paginator]="true"
+          [rows]="10">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="fit-grid-cell">#</th>
+              <th>Company</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Items</th>
+              <th class="fit-grid-cell"></th>
+            </tr>
+          </ng-template>
+          <ng-template
+            pTemplate="body"
+            let-order>
+            <tr>
+              <td class="fit-grid-cell">{{order.orderId}}</td>
+              <td>{{order.companyName}}</td>
+              <td>{{order.orderDate}}</td>
+              <td>
+                <label
+                  [ngClass]="{
+                      'label-primary': order.orderStatus == 1,
+                      'label-default': order.orderStatus == 2,
+                      'label-warning': order.orderStatus == 3,
+                      'label-danger': order.orderStatus == 4
+                    }"
+                  class="label">
+                  {{order.orderStatusName }}
+                </label>
+              </td>
+              <td>{{order.itemsCount}}</td>
+              <td>
+                <a
+                  href="javascript:;"
+                  [routerLink]="['/customer-orders',order.orderId,'view']"
+                  title="view">
+                  <i class="fa fa-eye"></i>
+                </a>
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+
+      </div>
+    </div>
+  </div>
+
+</div>

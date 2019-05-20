@@ -1,0 +1,135 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption">
+          <div class="caption font-green-sharp">
+            <span class="caption-subject bold uppercase">Order Details</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a
+            href="javascript:;"
+            (click)="visible=true"
+            class="btn green btn-sm">
+            <i class="fa fa-pencil"></i>
+            Update Order Status
+          </a>
+        </div>
+      </div>
+      <div
+        class="portlet-body form"
+        *ngIf="order">
+
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal padding-tb-15">
+              <dt>Order Number:</dt>
+              <dd>{{order.orderId}}</dd>
+
+              <dt>Order Date:</dt>
+              <dd>{{order.orderDate}}</dd>
+
+              <dt>Company:</dt>
+              <dd>{{order.companyName}}</dd>
+
+              <dt>Cost:</dt>
+              <dd>{{order.totalPrice}} KD</dd>
+
+              <dt>Status:</dt>
+              <dd>
+                <label
+                  [ngClass]="{
+                      'label-primary': order.orderStatus == 1,
+                      'label-default': order.orderStatus == 2,
+                      'label-warning': order.orderStatus == 3,
+                      'label-danger': order.orderStatus == 4
+                    }"
+                  class="label">
+                  {{order.orderStatusName }}
+                </label>
+              </dd>
+            </dl>
+          </div>
+
+          <div class="col-md-12">
+            <table class="table table-responsive table-hover">
+              <thead>
+                <tr>
+                  <td></td>
+                  <td>Product Name</td>
+                  <td>
+                    Price
+                    <small>KD</small>
+                  </td>
+                  <td>Quantity</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.items">
+                  <td>
+                    <img
+                      style="height: 50px;"
+                      class="img-rounded"
+                      [src]="item.imageUrl">
+                  </td>
+                  <td>{{item.productName}}</td>
+                  <td>{{item.price}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="Change Order Status"
+  width="700"
+  [(visible)]="visible"
+  [modal]="true"
+  baseZIndex="99999999"
+  [responsive]="true">
+  <form
+    role="form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>New Status</label>
+      <select
+        class="form-control"
+        formControlName="orderStatus">
+        <option value="1">New</option>
+        <option value="2">Accepted</option>
+        <option value="3">Shipped</option>
+        <option value="4">Rejected</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea
+        class="form-control"
+        formControlName="notes"></textarea>
+    </div>
+  </form>
+  <p-footer>
+    <button
+      type="button"
+      class="btn green"
+      (click)="onSubmit()">
+      Save
+    </button>
+    <button
+      type="button"
+      class="btn btn-default"
+      (click)="visible=false">
+      Close
+    </button>
+  </p-footer>
+</p-dialog>

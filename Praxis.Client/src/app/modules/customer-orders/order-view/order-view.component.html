@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption">
+          <div class="caption font-green-sharp">
+            <span class="caption-subject bold uppercase">Order Details</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="portlet-body form"
+        *ngIf="order">
+
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal padding-tb-15">
+              <dt>Order Number:</dt>
+              <dd>{{order.orderId}}</dd>
+
+              <dt>Order Date:</dt>
+              <dd>{{order.orderDate}}</dd>
+
+              <dt>Company:</dt>
+              <dd>{{order.companyName}}</dd>
+
+              <dt>Cost:</dt>
+              <dd>{{order.totalPrice}} KD</dd>
+
+              <dt>Status:</dt>
+              <dd>
+                <label
+                  [ngClass]="{
+                      'label-primary': order.orderStatus == 1,
+                      'label-default': order.orderStatus == 2,
+                      'label-warning': order.orderStatus == 3,
+                      'label-danger': order.orderStatus == 4
+                    }"
+                  class="label">
+                  {{order.orderStatusName }}
+                </label>
+              </dd>
+            </dl>
+          </div>
+
+          <div class="col-md-12">
+            <table class="table table-responsive table-hover">
+              <thead>
+                <tr>
+                  <td></td>
+                  <td>Product Name</td>
+                  <td>
+                    Price
+                    <small>KD</small>
+                  </td>
+                  <td>Quantity</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.items">
+                  <td>
+                    <img
+                      style="height: 50px;"
+                      class="img-rounded"
+                      [src]="item.imageUrl">
+                  </td>
+                  <td>{{item.productName}}</td>
+                  <td>{{item.price}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

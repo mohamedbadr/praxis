@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190516144632_Initialize.cs" />
+    <Compile Remove="Migrations\20190516144632_Initialize.Designer.cs" />
+    <Compile Remove="Migrations\20190516145002_AddEntities.cs" />
+    <Compile Remove="Migrations\20190516145002_AddEntities.Designer.cs" />
+    <Compile Remove="Migrations\20190519102503_AddOrderLog.cs" />
+    <Compile Remove="Migrations\20190519102503_AddOrderLog.Designer.cs" />
+    <Compile Remove="Migrations\20190519102730_AddOrderLog.cs" />
+    <Compile Remove="Migrations\20190519102730_AddOrderLog.Designer.cs" />
+    <Compile Remove="Migrations\20190519125136_FixLogRelation.cs" />
+    <Compile Remove="Migrations\20190519125136_FixLogRelation.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.4" />
+    <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Praxis.Entities\Praxis.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

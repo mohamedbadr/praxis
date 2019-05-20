@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption">
+          <div class="caption font-green-sharp">
+            <span class="caption-subject bold uppercase"> Add Product</span>
+          </div>
+        </div>
+      </div>
+      <div class="portlet-body form">
+
+        <form
+          role="form"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()">
+
+          <div class="form-body">
+
+            <div class="form-group">
+              <label class="required">Product Code</label>
+              <input
+                type="text"
+                maxlength="10"
+                class="form-control"
+                formControlName="code">
+              <span
+                class="error"
+                *ngIf="!form.controls.code.valid && form.controls.code.touched">
+            Product code is required.
+          </span>
+            </div>
+
+            <div class="form-group">
+              <label class="required">Product Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name">
+              <span
+                class="error"
+                *ngIf="!form.controls.name.valid && form.controls.name.touched">
+            Product name is required.
+          </span>
+            </div>
+
+            <div class="form-group">
+              <label class="required">Product Price</label>
+              <div class="input-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="price">
+                <div class="input-group-addon">KD</div>
+              </div>
+              <span
+                class="error"
+                *ngIf="!form.controls.name.valid && form.controls.name.touched">
+            Product name is required.
+          </span>
+            </div>
+
+            <div class="form-group">
+              <label>
+                Images
+                <small class="text-info">(10 images maximum)</small>
+              </label>
+              <input
+                formControlName="document"
+                type="file"
+                ng2FileSelect
+                accept=".jpg"
+                [uploader]="uploader"
+                multiple>
+              <br>
+              <br>
+
+            </div>
+            <table
+              class="table table-responsive table-hover"
+              *ngIf="uploader.queue.length > 0"
+              style="width: 60%">
+              <thead>
+                <tr>
+                  <th width="90%">File Name</th>
+                  <th width="10%">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                  <th width="90%">
+                    {{item.file.name}}  ( size:{{item.file.size}})
+                  </th>
+                  <th
+                    class="text-center"
+                    width="10%">
+                    <a
+                      href="javascript:;"
+                      (click)="item.remove()">
+                      <i class="fa fa-trash text-danger"></i>
+                    </a>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-actions right">
+            <a
+              href="#"
+              style="margin-right: 10px"
+              [routerLink]="['/company-products']"
+              class="btn default">
+              Cancel
+            </a>
+            <button
+              type="submit"
+              [disabled]="!form.valid"
+              class="btn green">
+              Save
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

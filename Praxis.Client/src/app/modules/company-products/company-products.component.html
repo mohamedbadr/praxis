@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption">
+          <div class="caption font-green-sharp">
+            <span class="caption-subject bold uppercase"> Products</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a
+            href="#"
+            [routerLink]="['/company-products/add']"
+            class="btn green btn-sm">
+            <i class="fa fa-plus"></i>
+            Add Product
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body form">
+
+        <div
+          class="alert alert-warning"
+          *ngIf="!products || products.length == 0">
+          <i class="fa fa-warning"></i>
+          No products have been added yet
+        </div>
+
+        <div *ngIf="products && products.length > 0">
+          <div
+            style="border: solid 1px #eee"
+            *ngFor="let product of products">
+            <div class="row">
+              <div class="col-md-8">
+                <h4
+                  style="padding: 10px;font-weight: bold"
+                  class="font-green">{{product.productName}} <small class="text-danger">{{product.price}} KD</small></h4>
+              </div>
+              <div class="col-md-4">
+                <a
+                  class="btn btn-circle btn-icon-only btn-default"
+                  style="float: right;margin: 20px 15px 0 0"
+                  href="javascript:;"
+                  (click)="onDelete(product.productId)"
+                  title="Delete">
+                  <i
+                    class="fa fa-trash text-danger"
+                    style="font-size: 20px"></i>
+                </a>
+
+                <a
+                  class="btn btn-circle btn-icon-only btn-default"
+                  style="float: right;margin: 20px 15px 0 0"
+                  href="javascript:;"
+                  [routerLink]="['/company-products',product.productId,'edit']"
+                  title="Edit">
+                  <i
+                    class="fa fa-pencil text-info"
+                    style="font-size: 22px"></i>
+                </a>
+              </div>
+            </div>
+
+            <div
+              *ngIf="!product.images || product.images.length == 0"
+              style="margin: 10px;"
+              class="alert alert-warning">
+              This product has no uploaded images.
+            </div>
+
+            <div
+              style="margin: 10px !important"
+              class="row"
+              *ngIf="product.images">
+              <div
+                class="col-md-3"
+                *ngFor="let image of product.images">
+                <a
+                  href="javascript:;"
+                  title="{{image.description}}"
+                  class="thumbnail">
+                  <img
+                    src="{{image.imageUrl}}"
+                    data-src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png"
+                    style="height: 120px; width: 100%">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Dialog -->
+<app-delete-dialog
+  #deleteDialog
+  (confirmed)="onDeleteConfirmed()"></app-delete-dialog>

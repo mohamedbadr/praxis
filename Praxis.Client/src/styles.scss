@@ -1,0 +1,164 @@
+/* You can add global styles to this file, and also import other style files */
+@import "theme/css/font-awesome.css";
+@import "theme/css/bootstrap.css";
+@import "theme/css/bootstrap-switch.css";
+@import "theme/css/components-md.css";
+@import "theme/css/plugins-md.css";
+@import "theme/css/layout.css";
+@import "theme/css/blue.css";
+
+$red: #FF0000;
+
+body {
+    background-color: #364150 !important;
+}
+
+.fit-cell {
+    width: 1%;
+    text-align: center;
+}
+
+.fit-grid-cell {
+    width: 50px;
+    text-align: center;
+}
+
+.required:after {
+    color: $red;
+    content: " *";
+}
+
+span.error {
+    display: initial;
+    color: $red;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.ng-invalid.ng-touched {
+    border-color: $red;
+    box-shadow: none;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.ui-dialog-footer {
+    text-align: right !important;
+
+    button {
+        margin-right: 10px;
+    }
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    float: right;
+}
+
+.ui-dialog-titlebar {
+    background: #FFF !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+}
+
+.simple-notification {
+    top: 60px !important;
+}
+
+.form-group .required {
+    font-size: 14px;
+    color: #333333;
+}
+
+body .ui-table .ui-table-thead > tr > th {
+    background-color: transparent;
+    border-color: #e7ecf1;
+}
+
+body .ui-table .ui-table-tbody > tr:nth-child(2n) {
+    background-color: transparent;
+}
+
+body .ui-table .ui-table-tbody > tr:hover {
+    background-color: #F5F5F5;
+}
+
+body .ui-table .ui-table-tbody > tr > td {
+    border-color: #e7ecf1;
+    padding: 5px 0.571em 5px 0.857em;
+
+    //padding: 0.571em 0.857em;
+}
+
+body .ui-paginator {
+    background-color: transparent;
+    border-color: #e7ecf1;
+}
+
+.ui-autocomplete {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #c2cad8;
+    border-radius: 0px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.ui-inputtext {
+    padding: 0 !important;
+    width: 100%;
+    border: none !important;
+}
+
+.mt-radio-inline {
+    padding: 10px 0 0 20px;
+}
+
+td {
+    line-height: 1.2 !important;
+
+    .btn-circle {
+        height: 27px;
+        width: 27px;
+    }
+}
+
+::ng-deep p-dialog .ui-dialog {
+    overflow: scroll;
+    max-height: 100%;
+}
+
+a {
+    .badge {
+        margin-right: 10px;
+    }
+}
+
+.swal2-container {
+    z-index: 99999999999;
+}
+
+.tools {
+    a {
+        padding-right: 5px;
+    }
+}
+
+.modal-content {
+    padding: 15px;
+}
+
+.modal-header {
+    margin-bottom: 10px;
+}
+
+dt,dd{
+  padding-top: 10px;
+}

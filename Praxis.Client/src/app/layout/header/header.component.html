@@ -1,0 +1,357 @@
+<div class="page-header navbar navbar-fixed-top">
+  <div class="page-header-inner">
+    <div class="page-logo">
+      <a href="javascript:;">
+        <img
+          src="../../../assets/images/logo-default.png"
+          alt="logo"
+          class="logo-default">
+      </a>
+      <div class="menu-toggler sidebar-toggler"></div>
+    </div>
+
+    <a
+      href="javascript:;"
+      class="menu-toggler responsive-toggler"
+      data-toggle="collapse"
+      data-target=".navbar-collapse">
+    </a>
+    <div class="page-top">
+      <div class="top-menu">
+        <ul class="nav navbar-nav pull-right">
+
+          <!-- Company Notifications -->
+          <li
+            *ngIf="isCompany"
+            class="dropdown dropdown-extended dropdown-notification"
+            id="header_notification_bar">
+
+
+            <a
+              href="javascript:;"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              data-hover="dropdown"
+              data-close-others="true"
+              aria-expanded="true">
+              <i class="icon-bell"></i>
+              <span
+                *ngIf="companyNotifications && companyNotifications.length > 0"
+                class="badge badge-default"> {{companyNotifications.length}} </span>
+            </a>
+
+
+            <ul
+              *ngIf="companyNotifications && companyNotifications.length > 0"
+              class="dropdown-menu">
+              <li>
+
+
+                <div
+                  class="slimScrollDiv"
+                  style="position: relative; overflow: hidden; width: auto;">
+                  <ul
+                    class="dropdown-menu-list scroller"
+                    style="overflow: hidden; width: auto;"
+                    data-handle-color="#637283"
+                    data-initialized="1">
+                    <li *ngFor="let item of companyNotifications">
+                      <a
+                        href="javascript:;"
+                        [routerLink]="['/company-orders',item]"
+                        routerLinkActive="router-link-active"><span class="details"></span>
+                        You have a new order placed with ID#<strong>{{item}}</strong>
+                      </a></li>
+                  </ul><div
+                    class="slimScrollBar"
+                    style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 121.359px;"></div><div
+                    class="slimScrollRail"
+                    style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                </div></li>
+            </ul></li>
+
+          <!-- Customer Notifications -->
+          <li
+            *ngIf="isCustomer"
+            class="dropdown dropdown-extended dropdown-notification"
+            id="header_notification_bar">
+
+
+            <a
+              href="javascript:;"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              data-hover="dropdown"
+              data-close-others="true"
+              aria-expanded="true">
+              <i class="icon-bell"></i>
+              <span
+                *ngIf="customerNotifications && customerNotifications.length > 0"
+                class="badge badge-default"> {{customerNotifications.length}} </span>
+            </a>
+
+
+            <ul
+              *ngIf="customerNotifications && customerNotifications.length > 0"
+              class="dropdown-menu">
+              <li>
+
+
+                <div
+                  class="slimScrollDiv"
+                  style="position: relative; overflow: hidden; width: auto;">
+                  <ul
+                    class="dropdown-menu-list scroller"
+                    style="overflow: hidden; width: auto;"
+                    data-handle-color="#637283"
+                    data-initialized="1">
+                    <li *ngFor="let item of customerNotifications">
+                      <a
+                        href="javascript:;"
+                        [routerLink]="['/customer-orders',item.orderId,'view']"
+                        routerLinkActive="router-link-active"><span class="details"></span>
+                        Order ID#<strong>{{item.orderId}}</strong>
+                        is updated to<strong>{{item.newStatusName}}</strong>
+                      </a></li>
+                  </ul><div
+                    class="slimScrollBar"
+                    style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 121.359px;"></div><div
+                    class="slimScrollRail"
+                    style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                </div></li>
+            </ul></li>
+
+          <li class="dropdown dropdown-extended dropdown-inbox">
+
+
+
+
+
+
+
+
+            <a
+              href="javascript:;"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              data-hover="dropdown"
+              data-close-others="true"
+              aria-expanded="true">
+              <i class="icon-basket"></i>
+              <span
+                *ngIf="cart && cart.length > 0"
+                style="margin-right: 20px !important"
+                class="badge badge-default"> {{cart.length}} </span>
+            </a>
+
+
+
+
+
+
+
+
+            <ul
+              *ngIf="cart && cart.length > 0"
+              class="dropdown-menu">
+              <li class="external">
+                <h3>You have
+                  <span class="bold">{{cart.length}} Items</span></h3>
+                </li>
+              <li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div
+                  class="slimScrollDiv"
+                  style="position: relative; overflow: hidden; width: auto">
+                  <ul
+                    class="dropdown-menu-list scroller"
+                    style="overflow: hidden; width: auto;"
+                    data-handle-color="#637283"
+                    data-initialized="1">
+                    <li *ngFor="let item of cart">
+                      <a href="javascript:;"><span class="photo">
+                        <img
+                            [src]="item.images[0].imageUrl"
+                            class="img-circle"
+                            alt>
+                          </span><span class="subject">
+                              <span class="from"> {{item.productName}} X {{item.quantity}}</span>
+                              <span class="time text-danger">{{item.price}} KD</span>
+                            </span>
+                      </a>
+                    </li>
+                    <li>
+                      <button
+                        type="btn btn-xs green"
+                        (click)="onPlaceOrder()">
+                        Place Order
+                      </button>
+                      <button
+                        type="btn btn-sm red"
+                        (click)="onClearCart()">
+                        Clear
+                      </button>
+                    </li>
+                  </ul><div
+                    class="slimScrollBar"
+                    style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 160.904px;"></div><div
+                    class="slimScrollRail"
+                    style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                </div>
+              </li>
+            </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ul
+              *ngIf="!cart || cart.length == 0"
+              class="dropdown-menu">
+              <li class="external">
+                <h3>Your cart is empty</h3>
+                </li>
+            </ul>
+          </li>
+
+          <li class="dropdown dropdown-user">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <a
+              href="javascript:;"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              data-hover="dropdown"
+              data-close-others="true">
+              <img
+                alt
+                class="img-circle"
+                src="../../../assets/images/avatar3_small.jpg">
+              <span class="username username-hide-on-mobile"> {{username}} </span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ul class="dropdown-menu dropdown-menu-default">
+              <li>
+                <a
+                  href="javascript:;"
+                  (click)="onSignout()"><i class="icon-logout"></i>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- END USER LOGIN DROPDOWN -->
+          <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+          <!-- END QUICK SIDEBAR TOGGLER -->
+        </ul>
+      </div>
+      <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END PAGE TOP -->
+  </div>
+  <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
